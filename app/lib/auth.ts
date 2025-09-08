@@ -27,14 +27,9 @@ const authOptions: NextAuthOptions = {
     async jwt({ token }) {
       return token;
     },
-    async session({ session, token }: any) {
-      const user = await prisma.user.findUnique({
-        where: {
-          id: token.sub,
-        },
-      });
+    async session({ session, token }) {
+      
       if (token) {
-        session.accessToken = token.accessToken;
         session.user.id = token.sub;
       }
       return session;

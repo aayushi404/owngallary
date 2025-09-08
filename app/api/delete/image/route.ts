@@ -26,6 +26,6 @@ export async function DELETE(req: NextRequest) {
         }
         return NextResponse.json({message:"sucessfully deleted"})
     } catch (e) {
-        return NextResponse.json({message:"something went wrong"})
+        return NextResponse.json({message:"something went wrong", error:e})
     }
 }
