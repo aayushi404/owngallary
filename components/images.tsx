@@ -1,5 +1,4 @@
 "use client"
-import prisma from "@/app/lib/prisma";
 import { Image as MyImage } from "@prisma/client";
 import Image from "next/image"
 import { useRouter } from "next/navigation";
@@ -8,14 +7,14 @@ export default function Images({ images }: { images: MyImage[] | null }) {
     const router = useRouter()
     async function handleOnDelete(image:MyImage) {
         try {
-            let response = await fetch("http://localhost:3000/api/delete/image", {
+            const response = await fetch("http://localhost:3000/api/delete/image", {
                 method: "DELETE",
                 headers: {
                     'Content-Type': "application/json"
                 },
                 body: JSON.stringify({ image })
             })
-            let data = await response.json()
+            const data = await response.json()
             if (!response.ok) {
                 console.log(data.message)
                 throw Error(data.message)

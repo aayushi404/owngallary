@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth"
 import prisma from "../lib/prisma"
 import { authOptions } from "../lib/auth"
 import { Header } from "@/components/header"
-import {Image as MyImage} from "@prisma/client"
 
 export default async function Home() {
     const session = await getServerSession(authOptions)

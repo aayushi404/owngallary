@@ -1,6 +1,6 @@
 "use client"
 
-import { signOut, useSession, signIn } from "next-auth/react"
+import { signOut, signIn } from "next-auth/react"
 import Image from "next/image"
 import {Session} from "next-auth"
 import { useState } from "react"
@@ -47,7 +47,7 @@ const Account = ({ session }: { session: Session }) => {
 export const Header = ({authStatus, session}:HeaderProps) => {
     
     return (
-        <div className="flex justify-between border h-12 fixed z-20 w-full shadow-xl shadow-gray-900 bg-gray-950 opacity-1">
+        <div className="">
             <div>Icon</div>
             <div className="flex">
                 <div>item1</div>

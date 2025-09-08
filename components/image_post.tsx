@@ -1,6 +1,6 @@
 "use client"
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react"
+import {  useState } from "react"
 
 export default function ImagePost() {
     const [file, setFile] = useState<File | null>();
@@ -11,25 +11,25 @@ export default function ImagePost() {
         
         if (!file) {
             setMessage("Please upload a file")
+            console.log(message)
             return
         }
         if (!file.type.includes("image")) {
             setMessage("Please upload an image")
+            console.log(message)
             return
         }
-        console.log(file)
-        let formdata = new FormData()
+        const formdata = new FormData()
         formdata.append("image", file)
         try {
-            let response = await fetch("http://localhost:3000/api/upload/image",
+            const response = await fetch("http://localhost:3000/api/upload/image",
                 {
                     method: "POST",
                     body: formdata,
                     
                 }
             )
-            let responseData = await response.json()
-            console.log(responseData)
+            const responseData = await response.json()
             if (response.status === 200) {
                 setMessage("")
                 router.refresh()

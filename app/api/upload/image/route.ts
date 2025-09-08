@@ -9,7 +9,7 @@ import { authOptions } from "@/app/lib/auth";
 export async function POST(req: NextRequest) {
     const session = await getServerSession(authOptions)
     const userId = session?.user.id
-    let data = await req.formData()
+    const data = await req.formData()
     const file: File | null = data.get('image') as unknown as File;
     if (!file) {
         return NextResponse.json({ error: 'No file found.' }, { status: 400 });
@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(bytes);
 
     const filename = `${Date.now()}-${file.name}`;
+    await fs.mkdir(path.join(process.cwd(), 'public/uploads'));
     const dir = path.join(process.cwd(), 'public/uploads', userId)
     
     await fs.mkdir(dir, { recursive: true });
