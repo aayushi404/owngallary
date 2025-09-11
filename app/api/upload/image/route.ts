@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             message: 'Upload successful!',
             imageUrl: imageUrl,
-        });
+        }, { status: 200 });
 
     } catch (error) {
         console.error('Error saving file:', error);

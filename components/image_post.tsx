@@ -36,14 +36,14 @@ export default function ImagePost() {
                 setFile(null)
             } else {
                 setMessage("try again!")
-                return new Error(responseData.error)
+                throw new Error(responseData.error)
             }
         } catch (err) {
-            throw Error("something went wrong")
+            return err
         }
     }
     return (
-        <div className="w-80 sm:w-100 flex-col my-3 gap-2 mx-auto align-middle mt-15">
+        <div className="w-80 sm:w-100 flex-col my-3 gap-2 mx-auto align-middle">
             <div className="h-32 w-full overflow-hidden relative  border-2 items-center rounded-2xl cursor-pointer border-gray-500 border-dotted shadow-2xl shadow-gray-900  ">
                 <input type="file" id="image"
                     accept="image/*"
