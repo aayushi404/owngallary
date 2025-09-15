@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(bytes);
 
     const filename = `${Date.now()}-${file.name}`;
-    await fs.mkdir(path.join(process.cwd(), 'public/uploads'));
+    await fs.mkdir(path.join(process.cwd(), 'public/uploads'), {recursive:true});
     const dir = path.join(process.cwd(), 'public/uploads', userId)
     
     await fs.mkdir(dir, { recursive: true });

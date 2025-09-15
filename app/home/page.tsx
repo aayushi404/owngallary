@@ -25,7 +25,7 @@ export default async function Home() {
     }
     
     return (
-        <div className="absolute">
+        <div className="">
             <Header authStatus={"authenticated"} session={session} />
             
             <ImagePost />

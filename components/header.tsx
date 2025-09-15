@@ -1,24 +1,10 @@
 "use client"
+import { SignIn, SignOut } from "./authComponents"
 
-import { signOut, signIn } from "next-auth/react"
 import Image from "next/image"
 import {Session} from "next-auth"
 import { useState } from "react"
 
-const SignOut = () => {
-    return (
-        <button onClick={() => signOut()}>
-            Signout
-        </button>
-    )
-}
-const SignIn = () => {
-    return (
-        <button onClick={() => signIn(undefined,{callbackUrl:"/home"})}>
-            Signin
-        </button>
-    )
-}
 type HeaderProps = {
     authStatus: string,
     session:Session | null
@@ -47,14 +33,16 @@ const Account = ({ session }: { session: Session }) => {
 export const Header = ({authStatus, session}:HeaderProps) => {
     
     return (
-        <div className="flex justify-between border-b-1 border-l-1 border-r-1 h-12 sm:max-w-250 sm:mx-auto py-2 mx-5 px-3 rounded-b-2xl shadow-2xl shadow-gray-900 border-gray-400 bg-neutral-900">
-            <div className=""><a href="/">
-                <Image src={"/icon.ico"} alt={"icon"} width={40} height={40} />
-                </a>
-            </div>
-            <div className="hover:border-b-gray-400 hover:border-b-2 h-5 text-gray-400"><a href="https://x.com/ayushitwt404">made with 🤍</a></div>
-            <div className="cursor-pointer">
-                {authStatus === "authenticated" && session ? <Account session={session} /> : <SignIn />}
+        <div className="sm:mx-0 mx-5 ">
+            <div className="flex justify-between border-1 h-12 sm:max-w-250 sm:mx-auto py-2 mx-5 px-3 rounded-b-2xl shadow-2xl shadow-gray-900 border-gray-400 bg-neutral-900">
+                <div className=""><a href="/">
+                    <Image src={"/icon.ico"} alt={"icon"} width={40} height={40} />
+                    </a>
+                </div>
+                <div className="hover:border-b-gray-400 hover:border-b-2 h-5 text-gray-400"><a href="https://x.com/ayushitwt404">made with 🤍</a></div>
+                <div className="cursor-pointer">
+                    {authStatus === "authenticated" && session ? <Account session={session} /> : <SignIn />}
+                </div>
             </div>
         </div>
     )
